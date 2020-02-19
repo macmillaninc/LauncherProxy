@@ -1,0 +1,3547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+      xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+      xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+      xmlns:s="http://www.w3.org/2001/XMLSchema"
+      xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+      xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+      xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s0="http://tempurl.com/"
+      name="Service1" targetNamespace="http://tempurl.com/"
+      xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempurl.com/"
+          xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="LoginV2">
+        <xs:complexContent mixed="false">
+          <xs:extension base="s0:ValueType">
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="pass" type="xs:string"/>
+              <xs:element minOccurs="0" maxOccurs="1" name="login" type="xs:string"/>
+              <xs:element minOccurs="0" maxOccurs="1" name="ver" type="xs:string"/>
+              <xs:element minOccurs="0" maxOccurs="1" name="mID" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ValueType"/>
+      <xs:complexType name="Login">
+        <xs:complexContent mixed="false">
+          <xs:extension base="s0:ValueType">
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="pass" type="xs:string"/>
+              <xs:element minOccurs="0" maxOccurs="1" name="login" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="RetrieveCompanyList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="CompanyList">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="username" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="companies"
+                type="s0:ArrayOfCompanyNode"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfCompanyNode">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CompanyNode" nillable="true"
+                type="s0:CompanyNode"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CompanyNode">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="did" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="doctrine" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="xp" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="pp" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="win" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="loss" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="draw" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveCompanyListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveCompanyListResult"
+                  type="s0:CompanyList"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveDoctrineHeader">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="DoctrinesHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="doctrineLists"
+                type="s0:ArrayOfDoctrines"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfDoctrines">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Doctrines" nillable="true"
+                type="s0:Doctrines"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Doctrines">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="doctrines" type="s0:ArrayOfDoctrine"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfDoctrine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Doctrine" nillable="true"
+                type="s0:Doctrine"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Doctrine">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="did" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="dname" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="doctrineSelections"
+                type="s0:ArrayOfDoctrineSelection"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfDoctrineSelection">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DoctrineSelection"
+                nillable="true" type="s0:DoctrineSelection"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DoctrineSelection">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="did" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="dsid" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="dsname" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="descr" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppCost" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="tier" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="preReq" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="preReq2" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="xPos" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="yPos" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="icon" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="iconSheet" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="selected" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveDoctrineHeaderResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveDoctrineHeaderResult"
+                  type="s0:DoctrinesHeader"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateCompany">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="relicname" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="doc" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateCompanyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="CreateCompanyResult"
+                  type="s0:CompanyList"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="TestBattleFile">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="battle" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ucs" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="TestBattleFileResponse">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="ReadyForBattleFile">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReadyForBattleFileResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="ReadyForBattleFileResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecieveReport">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="report" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecieveReportResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="RecieveReportResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetToCompleted">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetToCompletedResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="SetToCompletedResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="DataSquadQueue">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="dataSquadCommands"
+                type="s0:ArrayOfDataSquadCommand"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppTotal" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppCost" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="spTotal" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfDataSquadCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DataSquadCommand"
+                nillable="true" type="s0:DataSquadCommand"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DataSquadCommand">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="command" type="s0:Command"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="data" type="s0:Squad"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="Command">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Add"/>
+          <xs:enumeration value="Remove"/>
+          <xs:enumeration value="Update"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="Squad">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="sid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="uid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="duid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="sidt" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="pop" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="pid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="xp" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="vet" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="icon" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="iconSheet" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="effectID" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="effectCost" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="origin" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="index" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="resources" type="s0:Resources"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="upgrades" type="s0:ArrayOfUpgrade"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Resources">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="MP" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="MU" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="FU" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfUpgrade">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Upgrade" nillable="true"
+                type="s0:Upgrade"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Upgrade">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="upgid" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="upgexcludes" type="s0:ArrayOfInt"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="resources" type="s0:Resources"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="icon" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="iconSheet" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfInt">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RecieveSquadQueue">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="dsq" type="s0:DataSquadQueue"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecieveSquadQueueResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="RecieveSquadQueueResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="DataDoctrineSelectionQueue">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="reid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppTotal" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="dataDoctrineSelectionCommands"
+                type="s0:ArrayOfDataDoctrineSelectionCommand"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfDataDoctrineSelectionCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DataDoctrineSelectionCommand"
+                nillable="true" type="s0:DataDoctrineSelectionCommand"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DataDoctrineSelectionCommand">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="command" type="s0:Command"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="data" type="s0:DoctrineSelection"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppCost" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RecieveDoctrineSelectionQueue">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="dsq"
+                  type="s0:DataDoctrineSelectionQueue"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecieveDoctrineSelectionQueueResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="RecieveDoctrineSelectionQueueResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="AdvantageQueue">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="advantagesBought"
+                type="s0:ArrayOfAdvantage"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfAdvantage">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Advantage" nillable="true"
+                type="s0:Advantage"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Advantage">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="advid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="cost" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="tier" type="s0:AdvantageTier"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="tiergroup"
+                type="s0:AdvantageTierGroup"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="descr" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="selected" type="xs:boolean"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="toggled" type="xs:boolean"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="prereq" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="AdvantageTier">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="One"/>
+          <xs:enumeration value="Two"/>
+          <xs:enumeration value="Three"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="AdvantageTierGroup">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Resources"/>
+          <xs:enumeration value="Faction"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="RecieveAdvantageSelectionQueue">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="asq" type="s0:AdvantageQueue"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecieveAdvantageSelectionQueueResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="RecieveAdvantageSelectionQueueResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveDoctrine">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="did" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveDoctrineResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveDoctrineResult"
+                  type="s0:Doctrine"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveReinforcements">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="Reinforcements">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="reinforcementSelections"
+                type="s0:ArrayOfReinforcementSelection"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfReinforcementSelection">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ReinforcementSelection"
+                nillable="true" type="s0:ReinforcementSelection"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ReinforcementSelection">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="reid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="dsid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="fid" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="xPos" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="yPos" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="icon" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="iconsheet" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="units" type="s0:ArrayOfUnit"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="selected" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfUnit">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Unit" nillable="true"
+                type="s0:Unit"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Unit">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="uid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="hidden" type="xs:boolean"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="effectName" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="effectPID" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="effectID" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="effectUses" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="effectCost" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppl" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="slots" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="maxppl" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="vetmod" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="vet2cost" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="vet3cost" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="pop" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="maxunit" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="vet1desc" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="vet2desc" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="vet3desc" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="abilitydesc" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="eirrmoddesc" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="resources" type="s0:Resources"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="avail" type="s0:Availability"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="upgrades" type="s0:ArrayOfUpgrade"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="icon" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="iconSheet" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Availability">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="inr" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ins" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="cost" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="poolindex" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveReinforcementsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveReinforcementsResult"
+                  type="s0:Reinforcements"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveAdvantages">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="AdvantageList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="advantages" type="s0:ArrayOfAdvantage"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveAdvantagesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveAdvantagesResult"
+                  type="s0:AdvantageList"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveReports">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ReportList">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="reports" type="s0:ArrayOfReport"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfReport">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Report" nillable="true"
+                type="s0:Report"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Report">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="duration" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="result" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="playerside" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="map" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="gameType" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="gamestate" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="report" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="tracking"
+                type="s0:ArrayOfReportsTrack"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="players"
+                type="s0:ArrayOfReportsPlayer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfReportsTrack">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportsTrack" nillable="true"
+                type="s0:ReportsTrack"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ReportsTrack">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="increment" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="report" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfReportsPlayer">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportsPlayer" nillable="true"
+                type="s0:ReportsPlayer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ReportsPlayer">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="xp" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="forumname" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="battalionname" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="report" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveReportsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveReportsResult"
+                  type="s0:ReportList"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecievePrimaryDoctrine">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="did" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecievePrimaryDoctrineResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="RecievePrimaryDoctrineResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveBattleList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="datetime" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="BattleList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="battleList" type="s0:ArrayOfBattle"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="datetime" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfBattle">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Battle" nillable="true"
+                type="s0:Battle"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Battle">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="players" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="phase" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="location" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="creator" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="viewType" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="gameType" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="pass" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="alliesrank" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="axisrank" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="battlePlayers"
+                type="s0:ArrayOfBattlePlayer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfBattlePlayer">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="BattlePlayer" nillable="true"
+                type="s0:BattlePlayer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BattlePlayer">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="phase" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rank" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="position" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="xfire" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="broadcasting" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveBattleListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveBattleListResult"
+                  type="s0:BattleList"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveAvailability">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="AvailabilityPool">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="pools" type="s0:ArrayOfPool"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="basepool" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfPool">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Pool" nillable="true"
+                type="s0:Pool"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Pool">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="poolname" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="poolindex" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="poolamount" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveAvailabilityResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveAvailabilityResult"
+                  type="s0:AvailabilityPool"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveNews">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveNewsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveNewsResult" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveTicker">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveTickerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveTickerResult"
+                  type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveWarProgress">
+        <xs:complexType/>
+      </xs:element>
+      <xs:complexType name="WarProgress">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="sectorindex" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="progress" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="played" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="momentum" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="maps" type="s0:ArrayOfWarMap"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfWarMap">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="WarMap" nillable="true"
+                type="s0:WarMap"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="WarMap">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="sectorpos" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="mapname" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveWarProgressResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveWarProgressResult"
+                  type="s0:WarProgress"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveBattleAdvantageList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="BattleAdvantageList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="trainingAdvantages"
+                type="s0:ArrayOfBattleAdvantage"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="battleAdvantages"
+                type="s0:ArrayOfBattleAdvantage"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="trainingpoints" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfBattleAdvantage">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="BattleAdvantage"
+                nillable="true" type="s0:BattleAdvantage"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BattleAdvantage">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="baid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="iconSheet" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="icon" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="type" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="descr" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="cost1" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="cost2" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="num" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="max" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="free" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveBattleAdvantageListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveBattleAdvantageListResult"
+                  type="s0:BattleAdvantageList"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="BattleAdvantageQueue">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="battleAdvantages"
+                type="s0:ArrayOfBattleAdvantageChosen"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppspent" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfBattleAdvantageChosen">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="BattleAdvantageChosen"
+                nillable="true" type="s0:BattleAdvantageChosen"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BattleAdvantageChosen">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="baid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="total" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="bp" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RecieveBattleAdvantageQueue">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="bal" type="s0:BattleAdvantageQueue"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecieveBattleAdvantageQueueResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="RecieveBattleAdvantageQueueResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="DataRewardQueue">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="dataRewardCommands"
+                type="s0:ArrayOfDataRewardCommand"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfDataRewardCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DataRewardCommand"
+                nillable="true" type="s0:DataRewardCommand"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DataRewardCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="data" type="s0:Reward"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Reward">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="rname" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="rdescr" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="ename" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rType" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ID" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="uses" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="cost" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="fid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="sheet" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="icon" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="bought" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RecieveRewardQueue">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="brq" type="s0:DataRewardQueue"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecieveRewardQueueResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="RecieveRewardQueueResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecieveXFireAccount">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="xfire" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecieveXFireAccountResponse">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="RetrieveChat">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="dateTime" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="Chat">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="players" type="s0:ArrayOfChatPlayer"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="lines" type="s0:ArrayOfChatLine"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="dateTime" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfChatPlayer">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ChatPlayer" nillable="true"
+                type="s0:ChatPlayer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ChatPlayer">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="profile" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="player" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="win" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="loss" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="draw" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rank" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppTotal" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="xpTotal" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="cpTotal" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="skTotal" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="lasttime" type="xs:dateTime"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="now" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfChatLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ChatLine" nillable="true"
+                type="s0:ChatLine"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ChatLine">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="cid" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="player" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="profile" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rank" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="text" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveChatResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveChatResult" type="s0:Chat"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveSectorList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="dateTime" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="SectorList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="sectors" type="s0:ArrayOfSector"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfSector">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Sector" nillable="true"
+                type="s0:Sector"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Sector">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="wsid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="state" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="act_allied" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="act_axis" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="str_allied" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="str_axis" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="faction" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="supply" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="x" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="y" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="routesTo" type="s0:ArrayOfInt"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveSectorListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveSectorListResult"
+                  type="s0:SectorList"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendChat">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="text" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendChatResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="SendChatResult" type="s0:Chat"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendXFire">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="broadcasting" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendXFireResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="SendXFireResult" type="s0:Chat"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestJoinBattle">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestJoinBattleResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="RequestJoinBattleResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestLeaveBattle">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestLeaveBattleResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="RequestLeaveBattleResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestCreateBattle">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="campaign" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestCreateBattleResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="RequestCreateBattleResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeBattlePlayers">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="num" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeBattlePlayersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="ChangeBattlePlayersResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeBattleGameType">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="type" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeBattleGameTypeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="ChangeBattleGameTypeResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeBattlePlayerPhase">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="phase" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeBattlePlayerPhaseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="ChangeBattlePlayerPhaseResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestDeleteCompany">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestDeleteCompanyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="RequestDeleteCompanyResult"
+                  type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestBattleFile">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestBattleFileResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RequestBattleFileResult"
+                  type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestUCSFile">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="btid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestUCSFileResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RequestUCSFileResult"
+                  type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveDoctrineHeaders">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="DoctrineHeaders">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="doctrineHeaders"
+                type="s0:ArrayOfDoctrineHeader"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfDoctrineHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DoctrineHeader" nillable="true"
+                type="s0:DoctrineHeader"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DoctrineHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="did" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="iconSheet" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="icon" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveDoctrineHeadersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveDoctrineHeadersResult"
+                  type="s0:DoctrineHeaders"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrievePUnits">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="UnitList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="units" type="s0:ArrayOfUnit"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrievePUnitsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrievePUnitsResult"
+                  type="s0:UnitList"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrievePUnitList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrievePUnitListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrievePUnitListResult"
+                  type="s0:UnitList"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveUnits">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="Battalion">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="locked" type="xs:boolean"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppTotal" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="pp" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="xp" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="sp" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="fid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="rid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="did" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="reid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="win" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="loss" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="draw" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="squads" type="s0:ArrayOfSquad"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="xfire" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfSquad">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Squad" nillable="true"
+                type="s0:Squad"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveUnitsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveUnitsResult"
+                  type="s0:Battalion"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveRewards">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="Rewards">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="profileRewards" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="battalionRewards" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="rewards" type="s0:ArrayOfReward"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfReward">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Reward" nillable="true"
+                type="s0:Reward"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveRewardsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveRewardsResult"
+                  type="s0:Rewards"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RetrieveProfile">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="Profile">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="pname" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="username" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="bid" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ppid" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetrieveProfileResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RetrieveProfileResult"
+                  type="s0:Profile"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyLogin">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyLoginResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="VerifyLoginResult" type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyUserVersion">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:Login"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ver" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:simpleType name="LoginResponse">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ProfileNotFound"/>
+          <xs:enumeration value="ProfileOnly"/>
+          <xs:enumeration value="ProfileFound"/>
+          <xs:enumeration value="WrongVersion"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="VerifyUserVersionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="VerifyUserVersionResult"
+                  type="s0:LoginResponse"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AttemptLogin">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="login" type="s0:LoginV2"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:simpleType name="LoginResponseV2">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="UnknownError"/>
+          <xs:enumeration value="IncorrectVersion"/>
+          <xs:enumeration value="IncorrectPass"/>
+          <xs:enumeration value="MultiMachineID"/>
+          <xs:enumeration value="LoginSuccessful"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="AttemptLoginResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="AttemptLoginResult"
+                  type="s0:LoginResponseV2"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="boolean" type="xs:boolean"/>
+      <xs:element name="ReportList" nillable="true" type="s0:ReportList"/>
+      <xs:element name="BattleList" nillable="true" type="s0:BattleList"/>
+      <xs:element name="AvailabilityPool" nillable="true" type="s0:AvailabilityPool"/>
+      <xs:element name="string" nillable="true" type="xs:string"/>
+      <xs:element name="WarProgress" nillable="true" type="s0:WarProgress"/>
+      <xs:element name="BattleAdvantageList" nillable="true" type="s0:BattleAdvantageList"/>
+      <xs:element name="Chat" nillable="true" type="s0:Chat"/>
+      <xs:element name="SectorList" nillable="true" type="s0:SectorList"/>
+      <xs:element name="Rewards" nillable="true" type="s0:Rewards"/>
+    </xs:schema>
+  </types>
+  <message name="RetrieveCompanyListSoapIn">
+    <part name="parameters" element="s0:RetrieveCompanyList"/>
+  </message>
+  <message name="RetrieveCompanyListSoapOut">
+    <part name="parameters" element="s0:RetrieveCompanyListResponse"/>
+  </message>
+  <message name="RetrieveDoctrineHeaderSoapIn">
+    <part name="parameters" element="s0:RetrieveDoctrineHeader"/>
+  </message>
+  <message name="RetrieveDoctrineHeaderSoapOut">
+    <part name="parameters" element="s0:RetrieveDoctrineHeaderResponse"/>
+  </message>
+  <message name="CreateCompanySoapIn">
+    <part name="parameters" element="s0:CreateCompany"/>
+  </message>
+  <message name="CreateCompanySoapOut">
+    <part name="parameters" element="s0:CreateCompanyResponse"/>
+  </message>
+  <message name="TestBattleFileSoapIn">
+    <part name="parameters" element="s0:TestBattleFile"/>
+  </message>
+  <message name="TestBattleFileSoapOut">
+    <part name="parameters" element="s0:TestBattleFileResponse"/>
+  </message>
+  <message name="ReadyForBattleFileSoapIn">
+    <part name="parameters" element="s0:ReadyForBattleFile"/>
+  </message>
+  <message name="ReadyForBattleFileSoapOut">
+    <part name="parameters" element="s0:ReadyForBattleFileResponse"/>
+  </message>
+  <message name="RecieveReportSoapIn">
+    <part name="parameters" element="s0:RecieveReport"/>
+  </message>
+  <message name="RecieveReportSoapOut">
+    <part name="parameters" element="s0:RecieveReportResponse"/>
+  </message>
+  <message name="SetToCompletedSoapIn">
+    <part name="parameters" element="s0:SetToCompleted"/>
+  </message>
+  <message name="SetToCompletedSoapOut">
+    <part name="parameters" element="s0:SetToCompletedResponse"/>
+  </message>
+  <message name="RecieveSquadQueueSoapIn">
+    <part name="parameters" element="s0:RecieveSquadQueue"/>
+  </message>
+  <message name="RecieveSquadQueueSoapOut">
+    <part name="parameters" element="s0:RecieveSquadQueueResponse"/>
+  </message>
+  <message name="RecieveDoctrineSelectionQueueSoapIn">
+    <part name="parameters" element="s0:RecieveDoctrineSelectionQueue"/>
+  </message>
+  <message name="RecieveDoctrineSelectionQueueSoapOut">
+    <part name="parameters" element="s0:RecieveDoctrineSelectionQueueResponse"/>
+  </message>
+  <message name="RecieveAdvantageSelectionQueueSoapIn">
+    <part name="parameters" element="s0:RecieveAdvantageSelectionQueue"/>
+  </message>
+  <message name="RecieveAdvantageSelectionQueueSoapOut">
+    <part name="parameters" element="s0:RecieveAdvantageSelectionQueueResponse"/>
+  </message>
+  <message name="RetrieveDoctrineSoapIn">
+    <part name="parameters" element="s0:RetrieveDoctrine"/>
+  </message>
+  <message name="RetrieveDoctrineSoapOut">
+    <part name="parameters" element="s0:RetrieveDoctrineResponse"/>
+  </message>
+  <message name="RetrieveReinforcementsSoapIn">
+    <part name="parameters" element="s0:RetrieveReinforcements"/>
+  </message>
+  <message name="RetrieveReinforcementsSoapOut">
+    <part name="parameters" element="s0:RetrieveReinforcementsResponse"/>
+  </message>
+  <message name="RetrieveAdvantagesSoapIn">
+    <part name="parameters" element="s0:RetrieveAdvantages"/>
+  </message>
+  <message name="RetrieveAdvantagesSoapOut">
+    <part name="parameters" element="s0:RetrieveAdvantagesResponse"/>
+  </message>
+  <message name="RetrieveReportsSoapIn">
+    <part name="parameters" element="s0:RetrieveReports"/>
+  </message>
+  <message name="RetrieveReportsSoapOut">
+    <part name="parameters" element="s0:RetrieveReportsResponse"/>
+  </message>
+  <message name="RecievePrimaryDoctrineSoapIn">
+    <part name="parameters" element="s0:RecievePrimaryDoctrine"/>
+  </message>
+  <message name="RecievePrimaryDoctrineSoapOut">
+    <part name="parameters" element="s0:RecievePrimaryDoctrineResponse"/>
+  </message>
+  <message name="RetrieveBattleListSoapIn">
+    <part name="parameters" element="s0:RetrieveBattleList"/>
+  </message>
+  <message name="RetrieveBattleListSoapOut">
+    <part name="parameters" element="s0:RetrieveBattleListResponse"/>
+  </message>
+  <message name="RetrieveAvailabilitySoapIn">
+    <part name="parameters" element="s0:RetrieveAvailability"/>
+  </message>
+  <message name="RetrieveAvailabilitySoapOut">
+    <part name="parameters" element="s0:RetrieveAvailabilityResponse"/>
+  </message>
+  <message name="RetrieveNewsSoapIn">
+    <part name="parameters" element="s0:RetrieveNews"/>
+  </message>
+  <message name="RetrieveNewsSoapOut">
+    <part name="parameters" element="s0:RetrieveNewsResponse"/>
+  </message>
+  <message name="RetrieveTickerSoapIn">
+    <part name="parameters" element="s0:RetrieveTicker"/>
+  </message>
+  <message name="RetrieveTickerSoapOut">
+    <part name="parameters" element="s0:RetrieveTickerResponse"/>
+  </message>
+  <message name="RetrieveWarProgressSoapIn">
+    <part name="parameters" element="s0:RetrieveWarProgress"/>
+  </message>
+  <message name="RetrieveWarProgressSoapOut">
+    <part name="parameters" element="s0:RetrieveWarProgressResponse"/>
+  </message>
+  <message name="RetrieveBattleAdvantageListSoapIn">
+    <part name="parameters" element="s0:RetrieveBattleAdvantageList"/>
+  </message>
+  <message name="RetrieveBattleAdvantageListSoapOut">
+    <part name="parameters" element="s0:RetrieveBattleAdvantageListResponse"/>
+  </message>
+  <message name="RecieveBattleAdvantageQueueSoapIn">
+    <part name="parameters" element="s0:RecieveBattleAdvantageQueue"/>
+  </message>
+  <message name="RecieveBattleAdvantageQueueSoapOut">
+    <part name="parameters" element="s0:RecieveBattleAdvantageQueueResponse"/>
+  </message>
+  <message name="RecieveRewardQueueSoapIn">
+    <part name="parameters" element="s0:RecieveRewardQueue"/>
+  </message>
+  <message name="RecieveRewardQueueSoapOut">
+    <part name="parameters" element="s0:RecieveRewardQueueResponse"/>
+  </message>
+  <message name="RecieveXFireAccountSoapIn">
+    <part name="parameters" element="s0:RecieveXFireAccount"/>
+  </message>
+  <message name="RecieveXFireAccountSoapOut">
+    <part name="parameters" element="s0:RecieveXFireAccountResponse"/>
+  </message>
+  <message name="RetrieveChatSoapIn">
+    <part name="parameters" element="s0:RetrieveChat"/>
+  </message>
+  <message name="RetrieveChatSoapOut">
+    <part name="parameters" element="s0:RetrieveChatResponse"/>
+  </message>
+  <message name="RetrieveSectorListSoapIn">
+    <part name="parameters" element="s0:RetrieveSectorList"/>
+  </message>
+  <message name="RetrieveSectorListSoapOut">
+    <part name="parameters" element="s0:RetrieveSectorListResponse"/>
+  </message>
+  <message name="SendChatSoapIn">
+    <part name="parameters" element="s0:SendChat"/>
+  </message>
+  <message name="SendChatSoapOut">
+    <part name="parameters" element="s0:SendChatResponse"/>
+  </message>
+  <message name="SendXFireSoapIn">
+    <part name="parameters" element="s0:SendXFire"/>
+  </message>
+  <message name="SendXFireSoapOut">
+    <part name="parameters" element="s0:SendXFireResponse"/>
+  </message>
+  <message name="RequestJoinBattleSoapIn">
+    <part name="parameters" element="s0:RequestJoinBattle"/>
+  </message>
+  <message name="RequestJoinBattleSoapOut">
+    <part name="parameters" element="s0:RequestJoinBattleResponse"/>
+  </message>
+  <message name="RequestLeaveBattleSoapIn">
+    <part name="parameters" element="s0:RequestLeaveBattle"/>
+  </message>
+  <message name="RequestLeaveBattleSoapOut">
+    <part name="parameters" element="s0:RequestLeaveBattleResponse"/>
+  </message>
+  <message name="RequestCreateBattleSoapIn">
+    <part name="parameters" element="s0:RequestCreateBattle"/>
+  </message>
+  <message name="RequestCreateBattleSoapOut">
+    <part name="parameters" element="s0:RequestCreateBattleResponse"/>
+  </message>
+  <message name="ChangeBattlePlayersSoapIn">
+    <part name="parameters" element="s0:ChangeBattlePlayers"/>
+  </message>
+  <message name="ChangeBattlePlayersSoapOut">
+    <part name="parameters" element="s0:ChangeBattlePlayersResponse"/>
+  </message>
+  <message name="ChangeBattleGameTypeSoapIn">
+    <part name="parameters" element="s0:ChangeBattleGameType"/>
+  </message>
+  <message name="ChangeBattleGameTypeSoapOut">
+    <part name="parameters" element="s0:ChangeBattleGameTypeResponse"/>
+  </message>
+  <message name="ChangeBattlePlayerPhaseSoapIn">
+    <part name="parameters" element="s0:ChangeBattlePlayerPhase"/>
+  </message>
+  <message name="ChangeBattlePlayerPhaseSoapOut">
+    <part name="parameters" element="s0:ChangeBattlePlayerPhaseResponse"/>
+  </message>
+  <message name="RequestDeleteCompanySoapIn">
+    <part name="parameters" element="s0:RequestDeleteCompany"/>
+  </message>
+  <message name="RequestDeleteCompanySoapOut">
+    <part name="parameters" element="s0:RequestDeleteCompanyResponse"/>
+  </message>
+  <message name="RequestBattleFileSoapIn">
+    <part name="parameters" element="s0:RequestBattleFile"/>
+  </message>
+  <message name="RequestBattleFileSoapOut">
+    <part name="parameters" element="s0:RequestBattleFileResponse"/>
+  </message>
+  <message name="RequestUCSFileSoapIn">
+    <part name="parameters" element="s0:RequestUCSFile"/>
+  </message>
+  <message name="RequestUCSFileSoapOut">
+    <part name="parameters" element="s0:RequestUCSFileResponse"/>
+  </message>
+  <message name="RetrieveDoctrineHeadersSoapIn">
+    <part name="parameters" element="s0:RetrieveDoctrineHeaders"/>
+  </message>
+  <message name="RetrieveDoctrineHeadersSoapOut">
+    <part name="parameters" element="s0:RetrieveDoctrineHeadersResponse"/>
+  </message>
+  <message name="RetrievePUnitsSoapIn">
+    <part name="parameters" element="s0:RetrievePUnits"/>
+  </message>
+  <message name="RetrievePUnitsSoapOut">
+    <part name="parameters" element="s0:RetrievePUnitsResponse"/>
+  </message>
+  <message name="RetrievePUnitListSoapIn">
+    <part name="parameters" element="s0:RetrievePUnitList"/>
+  </message>
+  <message name="RetrievePUnitListSoapOut">
+    <part name="parameters" element="s0:RetrievePUnitListResponse"/>
+  </message>
+  <message name="RetrieveUnitsSoapIn">
+    <part name="parameters" element="s0:RetrieveUnits"/>
+  </message>
+  <message name="RetrieveUnitsSoapOut">
+    <part name="parameters" element="s0:RetrieveUnitsResponse"/>
+  </message>
+  <message name="RetrieveRewardsSoapIn">
+    <part name="parameters" element="s0:RetrieveRewards"/>
+  </message>
+  <message name="RetrieveRewardsSoapOut">
+    <part name="parameters" element="s0:RetrieveRewardsResponse"/>
+  </message>
+  <message name="RetrieveProfileSoapIn">
+    <part name="parameters" element="s0:RetrieveProfile"/>
+  </message>
+  <message name="RetrieveProfileSoapOut">
+    <part name="parameters" element="s0:RetrieveProfileResponse"/>
+  </message>
+  <message name="VerifyLoginSoapIn">
+    <part name="parameters" element="s0:VerifyLogin"/>
+  </message>
+  <message name="VerifyLoginSoapOut">
+    <part name="parameters" element="s0:VerifyLoginResponse"/>
+  </message>
+  <message name="VerifyUserVersionSoapIn">
+    <part name="parameters" element="s0:VerifyUserVersion"/>
+  </message>
+  <message name="VerifyUserVersionSoapOut">
+    <part name="parameters" element="s0:VerifyUserVersionResponse"/>
+  </message>
+  <message name="AttemptLoginSoapIn">
+    <part name="parameters" element="s0:AttemptLogin"/>
+  </message>
+  <message name="AttemptLoginSoapOut">
+    <part name="parameters" element="s0:AttemptLoginResponse"/>
+  </message>
+  <message name="TestBattleFileHttpGetIn">
+    <part name="battle" type="s:string"/>
+    <part name="ucs" type="s:string"/>
+    <part name="btid" type="s:int"/>
+  </message>
+  <message name="TestBattleFileHttpGetOut"/>
+  <message name="ReadyForBattleFileHttpGetIn">
+    <part name="btid" type="s:int"/>
+  </message>
+  <message name="ReadyForBattleFileHttpGetOut">
+    <part name="Body" element="s0:boolean"/>
+  </message>
+  <message name="RetrieveReportsHttpGetIn">
+    <part name="btid" type="s:int"/>
+  </message>
+  <message name="RetrieveReportsHttpGetOut">
+    <part name="Body" element="s0:ReportList"/>
+  </message>
+  <message name="RetrieveBattleListHttpGetIn">
+    <part name="bid" type="s:int"/>
+    <part name="datetime" type="s:string"/>
+  </message>
+  <message name="RetrieveBattleListHttpGetOut">
+    <part name="Body" element="s0:BattleList"/>
+  </message>
+  <message name="RetrieveAvailabilityHttpGetIn">
+    <part name="bid" type="s:int"/>
+  </message>
+  <message name="RetrieveAvailabilityHttpGetOut">
+    <part name="Body" element="s0:AvailabilityPool"/>
+  </message>
+  <message name="RetrieveNewsHttpGetIn">
+    <part name="bid" type="s:int"/>
+  </message>
+  <message name="RetrieveNewsHttpGetOut">
+    <part name="Body" element="s0:string"/>
+  </message>
+  <message name="RetrieveTickerHttpGetIn">
+    <part name="bid" type="s:int"/>
+  </message>
+  <message name="RetrieveTickerHttpGetOut">
+    <part name="Body" element="s0:string"/>
+  </message>
+  <message name="RetrieveWarProgressHttpGetIn"/>
+  <message name="RetrieveWarProgressHttpGetOut">
+    <part name="Body" element="s0:WarProgress"/>
+  </message>
+  <message name="RetrieveBattleAdvantageListHttpGetIn">
+    <part name="bid" type="s:int"/>
+    <part name="btid" type="s:int"/>
+  </message>
+  <message name="RetrieveBattleAdvantageListHttpGetOut">
+    <part name="Body" element="s0:BattleAdvantageList"/>
+  </message>
+  <message name="RecieveXFireAccountHttpGetIn">
+    <part name="bid" type="s:int"/>
+    <part name="xfire" type="s:string"/>
+  </message>
+  <message name="RecieveXFireAccountHttpGetOut"/>
+  <message name="RetrieveChatHttpGetIn">
+    <part name="bid" type="s:int"/>
+    <part name="dateTime" type="s:string"/>
+  </message>
+  <message name="RetrieveChatHttpGetOut">
+    <part name="Body" element="s0:Chat"/>
+  </message>
+  <message name="RetrieveSectorListHttpGetIn">
+    <part name="bid" type="s:int"/>
+    <part name="dateTime" type="s:string"/>
+  </message>
+  <message name="RetrieveSectorListHttpGetOut">
+    <part name="Body" element="s0:SectorList"/>
+  </message>
+  <message name="SendChatHttpGetIn">
+    <part name="bid" type="s:int"/>
+    <part name="text" type="s:string"/>
+  </message>
+  <message name="SendChatHttpGetOut">
+    <part name="Body" element="s0:Chat"/>
+  </message>
+  <message name="SendXFireHttpGetIn">
+    <part name="bid" type="s:int"/>
+    <part name="broadcasting" type="s:int"/>
+  </message>
+  <message name="SendXFireHttpGetOut">
+    <part name="Body" element="s0:Chat"/>
+  </message>
+  <message name="RetrieveRewardsHttpGetIn">
+    <part name="bid" type="s:int"/>
+  </message>
+  <message name="RetrieveRewardsHttpGetOut">
+    <part name="Body" element="s0:Rewards"/>
+  </message>
+  <message name="TestBattleFileHttpPostIn">
+    <part name="battle" type="s:string"/>
+    <part name="ucs" type="s:string"/>
+    <part name="btid" type="s:int"/>
+  </message>
+  <message name="TestBattleFileHttpPostOut"/>
+  <message name="ReadyForBattleFileHttpPostIn">
+    <part name="btid" type="s:int"/>
+  </message>
+  <message name="ReadyForBattleFileHttpPostOut">
+    <part name="Body" element="s0:boolean"/>
+  </message>
+  <message name="RetrieveReportsHttpPostIn">
+    <part name="btid" type="s:int"/>
+  </message>
+  <message name="RetrieveReportsHttpPostOut">
+    <part name="Body" element="s0:ReportList"/>
+  </message>
+  <message name="RetrieveBattleListHttpPostIn">
+    <part name="bid" type="s:int"/>
+    <part name="datetime" type="s:string"/>
+  </message>
+  <message name="RetrieveBattleListHttpPostOut">
+    <part name="Body" element="s0:BattleList"/>
+  </message>
+  <message name="RetrieveAvailabilityHttpPostIn">
+    <part name="bid" type="s:int"/>
+  </message>
+  <message name="RetrieveAvailabilityHttpPostOut">
+    <part name="Body" element="s0:AvailabilityPool"/>
+  </message>
+  <message name="RetrieveNewsHttpPostIn">
+    <part name="bid" type="s:int"/>
+  </message>
+  <message name="RetrieveNewsHttpPostOut">
+    <part name="Body" element="s0:string"/>
+  </message>
+  <message name="RetrieveTickerHttpPostIn">
+    <part name="bid" type="s:int"/>
+  </message>
+  <message name="RetrieveTickerHttpPostOut">
+    <part name="Body" element="s0:string"/>
+  </message>
+  <message name="RetrieveWarProgressHttpPostIn"/>
+  <message name="RetrieveWarProgressHttpPostOut">
+    <part name="Body" element="s0:WarProgress"/>
+  </message>
+  <message name="RetrieveBattleAdvantageListHttpPostIn">
+    <part name="bid" type="s:int"/>
+    <part name="btid" type="s:int"/>
+  </message>
+  <message name="RetrieveBattleAdvantageListHttpPostOut">
+    <part name="Body" element="s0:BattleAdvantageList"/>
+  </message>
+  <message name="RecieveXFireAccountHttpPostIn">
+    <part name="bid" type="s:int"/>
+    <part name="xfire" type="s:string"/>
+  </message>
+  <message name="RecieveXFireAccountHttpPostOut"/>
+  <message name="RetrieveChatHttpPostIn">
+    <part name="bid" type="s:int"/>
+    <part name="dateTime" type="s:string"/>
+  </message>
+  <message name="RetrieveChatHttpPostOut">
+    <part name="Body" element="s0:Chat"/>
+  </message>
+  <message name="RetrieveSectorListHttpPostIn">
+    <part name="bid" type="s:int"/>
+    <part name="dateTime" type="s:string"/>
+  </message>
+  <message name="RetrieveSectorListHttpPostOut">
+    <part name="Body" element="s0:SectorList"/>
+  </message>
+  <message name="SendChatHttpPostIn">
+    <part name="bid" type="s:int"/>
+    <part name="text" type="s:string"/>
+  </message>
+  <message name="SendChatHttpPostOut">
+    <part name="Body" element="s0:Chat"/>
+  </message>
+  <message name="SendXFireHttpPostIn">
+    <part name="bid" type="s:int"/>
+    <part name="broadcasting" type="s:int"/>
+  </message>
+  <message name="SendXFireHttpPostOut">
+    <part name="Body" element="s0:Chat"/>
+  </message>
+  <message name="RetrieveRewardsHttpPostIn">
+    <part name="bid" type="s:int"/>
+  </message>
+  <message name="RetrieveRewardsHttpPostOut">
+    <part name="Body" element="s0:Rewards"/>
+  </message>
+  <portType name="Service1Soap">
+    <operation name="RetrieveCompanyList">
+      <input message="s0:RetrieveCompanyListSoapIn"/>
+      <output message="s0:RetrieveCompanyListSoapOut"/>
+    </operation>
+    <operation name="RetrieveDoctrineHeader">
+      <input message="s0:RetrieveDoctrineHeaderSoapIn"/>
+      <output message="s0:RetrieveDoctrineHeaderSoapOut"/>
+    </operation>
+    <operation name="CreateCompany">
+      <input message="s0:CreateCompanySoapIn"/>
+      <output message="s0:CreateCompanySoapOut"/>
+    </operation>
+    <operation name="TestBattleFile">
+      <input message="s0:TestBattleFileSoapIn"/>
+      <output message="s0:TestBattleFileSoapOut"/>
+    </operation>
+    <operation name="ReadyForBattleFile">
+      <input message="s0:ReadyForBattleFileSoapIn"/>
+      <output message="s0:ReadyForBattleFileSoapOut"/>
+    </operation>
+    <operation name="RecieveReport">
+      <input message="s0:RecieveReportSoapIn"/>
+      <output message="s0:RecieveReportSoapOut"/>
+    </operation>
+    <operation name="SetToCompleted">
+      <input message="s0:SetToCompletedSoapIn"/>
+      <output message="s0:SetToCompletedSoapOut"/>
+    </operation>
+    <operation name="RecieveSquadQueue">
+      <input message="s0:RecieveSquadQueueSoapIn"/>
+      <output message="s0:RecieveSquadQueueSoapOut"/>
+    </operation>
+    <operation name="RecieveDoctrineSelectionQueue">
+      <input message="s0:RecieveDoctrineSelectionQueueSoapIn"/>
+      <output message="s0:RecieveDoctrineSelectionQueueSoapOut"/>
+    </operation>
+    <operation name="RecieveAdvantageSelectionQueue">
+      <input message="s0:RecieveAdvantageSelectionQueueSoapIn"/>
+      <output message="s0:RecieveAdvantageSelectionQueueSoapOut"/>
+    </operation>
+    <operation name="RetrieveDoctrine">
+      <input message="s0:RetrieveDoctrineSoapIn"/>
+      <output message="s0:RetrieveDoctrineSoapOut"/>
+    </operation>
+    <operation name="RetrieveReinforcements">
+      <input message="s0:RetrieveReinforcementsSoapIn"/>
+      <output message="s0:RetrieveReinforcementsSoapOut"/>
+    </operation>
+    <operation name="RetrieveAdvantages">
+      <input message="s0:RetrieveAdvantagesSoapIn"/>
+      <output message="s0:RetrieveAdvantagesSoapOut"/>
+    </operation>
+    <operation name="RetrieveReports">
+      <input message="s0:RetrieveReportsSoapIn"/>
+      <output message="s0:RetrieveReportsSoapOut"/>
+    </operation>
+    <operation name="RecievePrimaryDoctrine">
+      <input message="s0:RecievePrimaryDoctrineSoapIn"/>
+      <output message="s0:RecievePrimaryDoctrineSoapOut"/>
+    </operation>
+    <operation name="RetrieveBattleList">
+      <input message="s0:RetrieveBattleListSoapIn"/>
+      <output message="s0:RetrieveBattleListSoapOut"/>
+    </operation>
+    <operation name="RetrieveAvailability">
+      <input message="s0:RetrieveAvailabilitySoapIn"/>
+      <output message="s0:RetrieveAvailabilitySoapOut"/>
+    </operation>
+    <operation name="RetrieveNews">
+      <input message="s0:RetrieveNewsSoapIn"/>
+      <output message="s0:RetrieveNewsSoapOut"/>
+    </operation>
+    <operation name="RetrieveTicker">
+      <input message="s0:RetrieveTickerSoapIn"/>
+      <output message="s0:RetrieveTickerSoapOut"/>
+    </operation>
+    <operation name="RetrieveWarProgress">
+      <input message="s0:RetrieveWarProgressSoapIn"/>
+      <output message="s0:RetrieveWarProgressSoapOut"/>
+    </operation>
+    <operation name="RetrieveBattleAdvantageList">
+      <input message="s0:RetrieveBattleAdvantageListSoapIn"/>
+      <output message="s0:RetrieveBattleAdvantageListSoapOut"/>
+    </operation>
+    <operation name="RecieveBattleAdvantageQueue">
+      <input message="s0:RecieveBattleAdvantageQueueSoapIn"/>
+      <output message="s0:RecieveBattleAdvantageQueueSoapOut"/>
+    </operation>
+    <operation name="RecieveRewardQueue">
+      <input message="s0:RecieveRewardQueueSoapIn"/>
+      <output message="s0:RecieveRewardQueueSoapOut"/>
+    </operation>
+    <operation name="RecieveXFireAccount">
+      <input message="s0:RecieveXFireAccountSoapIn"/>
+      <output message="s0:RecieveXFireAccountSoapOut"/>
+    </operation>
+    <operation name="RetrieveChat">
+      <input message="s0:RetrieveChatSoapIn"/>
+      <output message="s0:RetrieveChatSoapOut"/>
+    </operation>
+    <operation name="RetrieveSectorList">
+      <input message="s0:RetrieveSectorListSoapIn"/>
+      <output message="s0:RetrieveSectorListSoapOut"/>
+    </operation>
+    <operation name="SendChat">
+      <input message="s0:SendChatSoapIn"/>
+      <output message="s0:SendChatSoapOut"/>
+    </operation>
+    <operation name="SendXFire">
+      <input message="s0:SendXFireSoapIn"/>
+      <output message="s0:SendXFireSoapOut"/>
+    </operation>
+    <operation name="RequestJoinBattle">
+      <input message="s0:RequestJoinBattleSoapIn"/>
+      <output message="s0:RequestJoinBattleSoapOut"/>
+    </operation>
+    <operation name="RequestLeaveBattle">
+      <input message="s0:RequestLeaveBattleSoapIn"/>
+      <output message="s0:RequestLeaveBattleSoapOut"/>
+    </operation>
+    <operation name="RequestCreateBattle">
+      <input message="s0:RequestCreateBattleSoapIn"/>
+      <output message="s0:RequestCreateBattleSoapOut"/>
+    </operation>
+    <operation name="ChangeBattlePlayers">
+      <input message="s0:ChangeBattlePlayersSoapIn"/>
+      <output message="s0:ChangeBattlePlayersSoapOut"/>
+    </operation>
+    <operation name="ChangeBattleGameType">
+      <input message="s0:ChangeBattleGameTypeSoapIn"/>
+      <output message="s0:ChangeBattleGameTypeSoapOut"/>
+    </operation>
+    <operation name="ChangeBattlePlayerPhase">
+      <input message="s0:ChangeBattlePlayerPhaseSoapIn"/>
+      <output message="s0:ChangeBattlePlayerPhaseSoapOut"/>
+    </operation>
+    <operation name="RequestDeleteCompany">
+      <input message="s0:RequestDeleteCompanySoapIn"/>
+      <output message="s0:RequestDeleteCompanySoapOut"/>
+    </operation>
+    <operation name="RequestBattleFile">
+      <input message="s0:RequestBattleFileSoapIn"/>
+      <output message="s0:RequestBattleFileSoapOut"/>
+    </operation>
+    <operation name="RequestUCSFile">
+      <input message="s0:RequestUCSFileSoapIn"/>
+      <output message="s0:RequestUCSFileSoapOut"/>
+    </operation>
+    <operation name="RetrieveDoctrineHeaders">
+      <input message="s0:RetrieveDoctrineHeadersSoapIn"/>
+      <output message="s0:RetrieveDoctrineHeadersSoapOut"/>
+    </operation>
+    <operation name="RetrievePUnits">
+      <input message="s0:RetrievePUnitsSoapIn"/>
+      <output message="s0:RetrievePUnitsSoapOut"/>
+    </operation>
+    <operation name="RetrievePUnitList">
+      <input message="s0:RetrievePUnitListSoapIn"/>
+      <output message="s0:RetrievePUnitListSoapOut"/>
+    </operation>
+    <operation name="RetrieveUnits">
+      <input message="s0:RetrieveUnitsSoapIn"/>
+      <output message="s0:RetrieveUnitsSoapOut"/>
+    </operation>
+    <operation name="RetrieveRewards">
+      <input message="s0:RetrieveRewardsSoapIn"/>
+      <output message="s0:RetrieveRewardsSoapOut"/>
+    </operation>
+    <operation name="RetrieveProfile">
+      <input message="s0:RetrieveProfileSoapIn"/>
+      <output message="s0:RetrieveProfileSoapOut"/>
+    </operation>
+    <operation name="VerifyLogin">
+      <input message="s0:VerifyLoginSoapIn"/>
+      <output message="s0:VerifyLoginSoapOut"/>
+    </operation>
+    <operation name="VerifyUserVersion">
+      <input message="s0:VerifyUserVersionSoapIn"/>
+      <output message="s0:VerifyUserVersionSoapOut"/>
+    </operation>
+    <operation name="AttemptLogin">
+      <input message="s0:AttemptLoginSoapIn"/>
+      <output message="s0:AttemptLoginSoapOut"/>
+    </operation>
+  </portType>
+  <portType name="Service1Soap12">
+    <operation name="RetrieveCompanyList">
+      <input message="s0:RetrieveCompanyListSoapIn"/>
+      <output message="s0:RetrieveCompanyListSoapOut"/>
+    </operation>
+    <operation name="RetrieveDoctrineHeader">
+      <input message="s0:RetrieveDoctrineHeaderSoapIn"/>
+      <output message="s0:RetrieveDoctrineHeaderSoapOut"/>
+    </operation>
+    <operation name="CreateCompany">
+      <input message="s0:CreateCompanySoapIn"/>
+      <output message="s0:CreateCompanySoapOut"/>
+    </operation>
+    <operation name="TestBattleFile">
+      <input message="s0:TestBattleFileSoapIn"/>
+      <output message="s0:TestBattleFileSoapOut"/>
+    </operation>
+    <operation name="ReadyForBattleFile">
+      <input message="s0:ReadyForBattleFileSoapIn"/>
+      <output message="s0:ReadyForBattleFileSoapOut"/>
+    </operation>
+    <operation name="RecieveReport">
+      <input message="s0:RecieveReportSoapIn"/>
+      <output message="s0:RecieveReportSoapOut"/>
+    </operation>
+    <operation name="SetToCompleted">
+      <input message="s0:SetToCompletedSoapIn"/>
+      <output message="s0:SetToCompletedSoapOut"/>
+    </operation>
+    <operation name="RecieveSquadQueue">
+      <input message="s0:RecieveSquadQueueSoapIn"/>
+      <output message="s0:RecieveSquadQueueSoapOut"/>
+    </operation>
+    <operation name="RecieveDoctrineSelectionQueue">
+      <input message="s0:RecieveDoctrineSelectionQueueSoapIn"/>
+      <output message="s0:RecieveDoctrineSelectionQueueSoapOut"/>
+    </operation>
+    <operation name="RecieveAdvantageSelectionQueue">
+      <input message="s0:RecieveAdvantageSelectionQueueSoapIn"/>
+      <output message="s0:RecieveAdvantageSelectionQueueSoapOut"/>
+    </operation>
+    <operation name="RetrieveDoctrine">
+      <input message="s0:RetrieveDoctrineSoapIn"/>
+      <output message="s0:RetrieveDoctrineSoapOut"/>
+    </operation>
+    <operation name="RetrieveReinforcements">
+      <input message="s0:RetrieveReinforcementsSoapIn"/>
+      <output message="s0:RetrieveReinforcementsSoapOut"/>
+    </operation>
+    <operation name="RetrieveAdvantages">
+      <input message="s0:RetrieveAdvantagesSoapIn"/>
+      <output message="s0:RetrieveAdvantagesSoapOut"/>
+    </operation>
+    <operation name="RetrieveReports">
+      <input message="s0:RetrieveReportsSoapIn"/>
+      <output message="s0:RetrieveReportsSoapOut"/>
+    </operation>
+    <operation name="RecievePrimaryDoctrine">
+      <input message="s0:RecievePrimaryDoctrineSoapIn"/>
+      <output message="s0:RecievePrimaryDoctrineSoapOut"/>
+    </operation>
+    <operation name="RetrieveBattleList">
+      <input message="s0:RetrieveBattleListSoapIn"/>
+      <output message="s0:RetrieveBattleListSoapOut"/>
+    </operation>
+    <operation name="RetrieveAvailability">
+      <input message="s0:RetrieveAvailabilitySoapIn"/>
+      <output message="s0:RetrieveAvailabilitySoapOut"/>
+    </operation>
+    <operation name="RetrieveNews">
+      <input message="s0:RetrieveNewsSoapIn"/>
+      <output message="s0:RetrieveNewsSoapOut"/>
+    </operation>
+    <operation name="RetrieveTicker">
+      <input message="s0:RetrieveTickerSoapIn"/>
+      <output message="s0:RetrieveTickerSoapOut"/>
+    </operation>
+    <operation name="RetrieveWarProgress">
+      <input message="s0:RetrieveWarProgressSoapIn"/>
+      <output message="s0:RetrieveWarProgressSoapOut"/>
+    </operation>
+    <operation name="RetrieveBattleAdvantageList">
+      <input message="s0:RetrieveBattleAdvantageListSoapIn"/>
+      <output message="s0:RetrieveBattleAdvantageListSoapOut"/>
+    </operation>
+    <operation name="RecieveBattleAdvantageQueue">
+      <input message="s0:RecieveBattleAdvantageQueueSoapIn"/>
+      <output message="s0:RecieveBattleAdvantageQueueSoapOut"/>
+    </operation>
+    <operation name="RecieveRewardQueue">
+      <input message="s0:RecieveRewardQueueSoapIn"/>
+      <output message="s0:RecieveRewardQueueSoapOut"/>
+    </operation>
+    <operation name="RecieveXFireAccount">
+      <input message="s0:RecieveXFireAccountSoapIn"/>
+      <output message="s0:RecieveXFireAccountSoapOut"/>
+    </operation>
+    <operation name="RetrieveChat">
+      <input message="s0:RetrieveChatSoapIn"/>
+      <output message="s0:RetrieveChatSoapOut"/>
+    </operation>
+    <operation name="RetrieveSectorList">
+      <input message="s0:RetrieveSectorListSoapIn"/>
+      <output message="s0:RetrieveSectorListSoapOut"/>
+    </operation>
+    <operation name="SendChat">
+      <input message="s0:SendChatSoapIn"/>
+      <output message="s0:SendChatSoapOut"/>
+    </operation>
+    <operation name="SendXFire">
+      <input message="s0:SendXFireSoapIn"/>
+      <output message="s0:SendXFireSoapOut"/>
+    </operation>
+    <operation name="RequestJoinBattle">
+      <input message="s0:RequestJoinBattleSoapIn"/>
+      <output message="s0:RequestJoinBattleSoapOut"/>
+    </operation>
+    <operation name="RequestLeaveBattle">
+      <input message="s0:RequestLeaveBattleSoapIn"/>
+      <output message="s0:RequestLeaveBattleSoapOut"/>
+    </operation>
+    <operation name="RequestCreateBattle">
+      <input message="s0:RequestCreateBattleSoapIn"/>
+      <output message="s0:RequestCreateBattleSoapOut"/>
+    </operation>
+    <operation name="ChangeBattlePlayers">
+      <input message="s0:ChangeBattlePlayersSoapIn"/>
+      <output message="s0:ChangeBattlePlayersSoapOut"/>
+    </operation>
+    <operation name="ChangeBattleGameType">
+      <input message="s0:ChangeBattleGameTypeSoapIn"/>
+      <output message="s0:ChangeBattleGameTypeSoapOut"/>
+    </operation>
+    <operation name="ChangeBattlePlayerPhase">
+      <input message="s0:ChangeBattlePlayerPhaseSoapIn"/>
+      <output message="s0:ChangeBattlePlayerPhaseSoapOut"/>
+    </operation>
+    <operation name="RequestDeleteCompany">
+      <input message="s0:RequestDeleteCompanySoapIn"/>
+      <output message="s0:RequestDeleteCompanySoapOut"/>
+    </operation>
+    <operation name="RequestBattleFile">
+      <input message="s0:RequestBattleFileSoapIn"/>
+      <output message="s0:RequestBattleFileSoapOut"/>
+    </operation>
+    <operation name="RequestUCSFile">
+      <input message="s0:RequestUCSFileSoapIn"/>
+      <output message="s0:RequestUCSFileSoapOut"/>
+    </operation>
+    <operation name="RetrieveDoctrineHeaders">
+      <input message="s0:RetrieveDoctrineHeadersSoapIn"/>
+      <output message="s0:RetrieveDoctrineHeadersSoapOut"/>
+    </operation>
+    <operation name="RetrievePUnits">
+      <input message="s0:RetrievePUnitsSoapIn"/>
+      <output message="s0:RetrievePUnitsSoapOut"/>
+    </operation>
+    <operation name="RetrievePUnitList">
+      <input message="s0:RetrievePUnitListSoapIn"/>
+      <output message="s0:RetrievePUnitListSoapOut"/>
+    </operation>
+    <operation name="RetrieveUnits">
+      <input message="s0:RetrieveUnitsSoapIn"/>
+      <output message="s0:RetrieveUnitsSoapOut"/>
+    </operation>
+    <operation name="RetrieveRewards">
+      <input message="s0:RetrieveRewardsSoapIn"/>
+      <output message="s0:RetrieveRewardsSoapOut"/>
+    </operation>
+    <operation name="RetrieveProfile">
+      <input message="s0:RetrieveProfileSoapIn"/>
+      <output message="s0:RetrieveProfileSoapOut"/>
+    </operation>
+    <operation name="VerifyLogin">
+      <input message="s0:VerifyLoginSoapIn"/>
+      <output message="s0:VerifyLoginSoapOut"/>
+    </operation>
+    <operation name="VerifyUserVersion">
+      <input message="s0:VerifyUserVersionSoapIn"/>
+      <output message="s0:VerifyUserVersionSoapOut"/>
+    </operation>
+    <operation name="AttemptLogin">
+      <input message="s0:AttemptLoginSoapIn"/>
+      <output message="s0:AttemptLoginSoapOut"/>
+    </operation>
+  </portType>
+  <portType name="Service1HttpGet">
+    <operation name="TestBattleFile">
+      <input message="s0:TestBattleFileHttpGetIn"/>
+      <output message="s0:TestBattleFileHttpGetOut"/>
+    </operation>
+    <operation name="ReadyForBattleFile">
+      <input message="s0:ReadyForBattleFileHttpGetIn"/>
+      <output message="s0:ReadyForBattleFileHttpGetOut"/>
+    </operation>
+    <operation name="RetrieveReports">
+      <input message="s0:RetrieveReportsHttpGetIn"/>
+      <output message="s0:RetrieveReportsHttpGetOut"/>
+    </operation>
+    <operation name="RetrieveBattleList">
+      <input message="s0:RetrieveBattleListHttpGetIn"/>
+      <output message="s0:RetrieveBattleListHttpGetOut"/>
+    </operation>
+    <operation name="RetrieveAvailability">
+      <input message="s0:RetrieveAvailabilityHttpGetIn"/>
+      <output message="s0:RetrieveAvailabilityHttpGetOut"/>
+    </operation>
+    <operation name="RetrieveNews">
+      <input message="s0:RetrieveNewsHttpGetIn"/>
+      <output message="s0:RetrieveNewsHttpGetOut"/>
+    </operation>
+    <operation name="RetrieveTicker">
+      <input message="s0:RetrieveTickerHttpGetIn"/>
+      <output message="s0:RetrieveTickerHttpGetOut"/>
+    </operation>
+    <operation name="RetrieveWarProgress">
+      <input message="s0:RetrieveWarProgressHttpGetIn"/>
+      <output message="s0:RetrieveWarProgressHttpGetOut"/>
+    </operation>
+    <operation name="RetrieveBattleAdvantageList">
+      <input message="s0:RetrieveBattleAdvantageListHttpGetIn"/>
+      <output message="s0:RetrieveBattleAdvantageListHttpGetOut"/>
+    </operation>
+    <operation name="RecieveXFireAccount">
+      <input message="s0:RecieveXFireAccountHttpGetIn"/>
+      <output message="s0:RecieveXFireAccountHttpGetOut"/>
+    </operation>
+    <operation name="RetrieveChat">
+      <input message="s0:RetrieveChatHttpGetIn"/>
+      <output message="s0:RetrieveChatHttpGetOut"/>
+    </operation>
+    <operation name="RetrieveSectorList">
+      <input message="s0:RetrieveSectorListHttpGetIn"/>
+      <output message="s0:RetrieveSectorListHttpGetOut"/>
+    </operation>
+    <operation name="SendChat">
+      <input message="s0:SendChatHttpGetIn"/>
+      <output message="s0:SendChatHttpGetOut"/>
+    </operation>
+    <operation name="SendXFire">
+      <input message="s0:SendXFireHttpGetIn"/>
+      <output message="s0:SendXFireHttpGetOut"/>
+    </operation>
+    <operation name="RetrieveRewards">
+      <input message="s0:RetrieveRewardsHttpGetIn"/>
+      <output message="s0:RetrieveRewardsHttpGetOut"/>
+    </operation>
+  </portType>
+  <portType name="Service1HttpPost">
+    <operation name="TestBattleFile">
+      <input message="s0:TestBattleFileHttpPostIn"/>
+      <output message="s0:TestBattleFileHttpPostOut"/>
+    </operation>
+    <operation name="ReadyForBattleFile">
+      <input message="s0:ReadyForBattleFileHttpPostIn"/>
+      <output message="s0:ReadyForBattleFileHttpPostOut"/>
+    </operation>
+    <operation name="RetrieveReports">
+      <input message="s0:RetrieveReportsHttpPostIn"/>
+      <output message="s0:RetrieveReportsHttpPostOut"/>
+    </operation>
+    <operation name="RetrieveBattleList">
+      <input message="s0:RetrieveBattleListHttpPostIn"/>
+      <output message="s0:RetrieveBattleListHttpPostOut"/>
+    </operation>
+    <operation name="RetrieveAvailability">
+      <input message="s0:RetrieveAvailabilityHttpPostIn"/>
+      <output message="s0:RetrieveAvailabilityHttpPostOut"/>
+    </operation>
+    <operation name="RetrieveNews">
+      <input message="s0:RetrieveNewsHttpPostIn"/>
+      <output message="s0:RetrieveNewsHttpPostOut"/>
+    </operation>
+    <operation name="RetrieveTicker">
+      <input message="s0:RetrieveTickerHttpPostIn"/>
+      <output message="s0:RetrieveTickerHttpPostOut"/>
+    </operation>
+    <operation name="RetrieveWarProgress">
+      <input message="s0:RetrieveWarProgressHttpPostIn"/>
+      <output message="s0:RetrieveWarProgressHttpPostOut"/>
+    </operation>
+    <operation name="RetrieveBattleAdvantageList">
+      <input message="s0:RetrieveBattleAdvantageListHttpPostIn"/>
+      <output message="s0:RetrieveBattleAdvantageListHttpPostOut"/>
+    </operation>
+    <operation name="RecieveXFireAccount">
+      <input message="s0:RecieveXFireAccountHttpPostIn"/>
+      <output message="s0:RecieveXFireAccountHttpPostOut"/>
+    </operation>
+    <operation name="RetrieveChat">
+      <input message="s0:RetrieveChatHttpPostIn"/>
+      <output message="s0:RetrieveChatHttpPostOut"/>
+    </operation>
+    <operation name="RetrieveSectorList">
+      <input message="s0:RetrieveSectorListHttpPostIn"/>
+      <output message="s0:RetrieveSectorListHttpPostOut"/>
+    </operation>
+    <operation name="SendChat">
+      <input message="s0:SendChatHttpPostIn"/>
+      <output message="s0:SendChatHttpPostOut"/>
+    </operation>
+    <operation name="SendXFire">
+      <input message="s0:SendXFireHttpPostIn"/>
+      <output message="s0:SendXFireHttpPostOut"/>
+    </operation>
+    <operation name="RetrieveRewards">
+      <input message="s0:RetrieveRewardsHttpPostIn"/>
+      <output message="s0:RetrieveRewardsHttpPostOut"/>
+    </operation>
+  </portType>
+  <binding name="Service1Soap" type="s0:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="RetrieveCompanyList">
+      <soap:operation soapAction="http://tempurl.com/RetrieveCompanyList" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveDoctrineHeader">
+      <soap:operation soapAction="http://tempurl.com/RetrieveDoctrineHeader" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="CreateCompany">
+      <soap:operation soapAction="http://tempurl.com/CreateCompany" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="TestBattleFile">
+      <soap:operation soapAction="http://tempurl.com/TestBattleFile" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ReadyForBattleFile">
+      <soap:operation soapAction="http://tempurl.com/ReadyForBattleFile" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveReport">
+      <soap:operation soapAction="http://tempurl.com/RecieveReport" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="SetToCompleted">
+      <soap:operation soapAction="http://tempurl.com/SetToCompleted" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveSquadQueue">
+      <soap:operation soapAction="http://tempurl.com/RecieveSquadQueue" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveDoctrineSelectionQueue">
+      <soap:operation soapAction="http://tempurl.com/RecieveDoctrineSelectionQueue"
+            style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveAdvantageSelectionQueue">
+      <soap:operation soapAction="http://tempurl.com/RecieveAdvantageSelectionQueue"
+            style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveDoctrine">
+      <soap:operation soapAction="http://tempurl.com/RetrieveDoctrine" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveReinforcements">
+      <soap:operation soapAction="http://tempurl.com/RetrieveReinforcements" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveAdvantages">
+      <soap:operation soapAction="http://tempurl.com/RetrieveAdvantages" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveReports">
+      <soap:operation soapAction="http://tempurl.com/RetrieveReports" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecievePrimaryDoctrine">
+      <soap:operation soapAction="http://tempurl.com/RecievePrimaryDoctrine" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveBattleList">
+      <soap:operation soapAction="http://tempurl.com/RetrieveBattleList" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveAvailability">
+      <soap:operation soapAction="http://tempurl.com/RetrieveAvailability" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveNews">
+      <soap:operation soapAction="http://tempurl.com/RetrieveNews" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveTicker">
+      <soap:operation soapAction="http://tempurl.com/RetrieveTicker" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveWarProgress">
+      <soap:operation soapAction="http://tempurl.com/RetrieveWarProgress" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveBattleAdvantageList">
+      <soap:operation soapAction="http://tempurl.com/RetrieveBattleAdvantageList"
+            style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveBattleAdvantageQueue">
+      <soap:operation soapAction="http://tempurl.com/RecieveBattleAdvantageQueue"
+            style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveRewardQueue">
+      <soap:operation soapAction="http://tempurl.com/RecieveRewardQueue" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveXFireAccount">
+      <soap:operation soapAction="http://tempurl.com/RecieveXFireAccount" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveChat">
+      <soap:operation soapAction="http://tempurl.com/RetrieveChat" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveSectorList">
+      <soap:operation soapAction="http://tempurl.com/RetrieveSectorList" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="SendChat">
+      <soap:operation soapAction="http://tempurl.com/SendChat" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="SendXFire">
+      <soap:operation soapAction="http://tempurl.com/SendXFire" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestJoinBattle">
+      <soap:operation soapAction="http://tempurl.com/RequestJoinBattle" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestLeaveBattle">
+      <soap:operation soapAction="http://tempurl.com/RequestLeaveBattle" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestCreateBattle">
+      <soap:operation soapAction="http://tempurl.com/RequestCreateBattle" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ChangeBattlePlayers">
+      <soap:operation soapAction="http://tempurl.com/ChangeBattlePlayers" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ChangeBattleGameType">
+      <soap:operation soapAction="http://tempurl.com/ChangeBattleGameType" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ChangeBattlePlayerPhase">
+      <soap:operation soapAction="http://tempurl.com/ChangeBattlePlayerPhase" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestDeleteCompany">
+      <soap:operation soapAction="http://tempurl.com/RequestDeleteCompany" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestBattleFile">
+      <soap:operation soapAction="http://tempurl.com/RequestBattleFile" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestUCSFile">
+      <soap:operation soapAction="http://tempurl.com/RequestUCSFile" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveDoctrineHeaders">
+      <soap:operation soapAction="http://tempurl.com/RetrieveDoctrineHeaders" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrievePUnits">
+      <soap:operation soapAction="http://tempurl.com/RetrievePUnits" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrievePUnitList">
+      <soap:operation soapAction="http://tempurl.com/RetrievePUnitList" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveUnits">
+      <soap:operation soapAction="http://tempurl.com/RetrieveUnits" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveRewards">
+      <soap:operation soapAction="http://tempurl.com/RetrieveRewards" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveProfile">
+      <soap:operation soapAction="http://tempurl.com/RetrieveProfile" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="VerifyLogin">
+      <soap:operation soapAction="http://tempurl.com/VerifyLogin" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="VerifyUserVersion">
+      <soap:operation soapAction="http://tempurl.com/VerifyUserVersion" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="AttemptLogin">
+      <soap:operation soapAction="http://tempurl.com/AttemptLogin" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="Service1Soap12" type="s0:Service1Soap12">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="RetrieveCompanyList">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveCompanyList" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveDoctrineHeader">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveDoctrineHeader"
+            style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="CreateCompany">
+      <soap12:operation soapAction="http://tempurl.com/CreateCompany" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="TestBattleFile">
+      <soap12:operation soapAction="http://tempurl.com/TestBattleFile" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ReadyForBattleFile">
+      <soap12:operation soapAction="http://tempurl.com/ReadyForBattleFile" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveReport">
+      <soap12:operation soapAction="http://tempurl.com/RecieveReport" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="SetToCompleted">
+      <soap12:operation soapAction="http://tempurl.com/SetToCompleted" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveSquadQueue">
+      <soap12:operation soapAction="http://tempurl.com/RecieveSquadQueue" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveDoctrineSelectionQueue">
+      <soap12:operation soapAction="http://tempurl.com/RecieveDoctrineSelectionQueue"
+            style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveAdvantageSelectionQueue">
+      <soap12:operation soapAction="http://tempurl.com/RecieveAdvantageSelectionQueue"
+            style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveDoctrine">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveDoctrine" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveReinforcements">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveReinforcements"
+            style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveAdvantages">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveAdvantages" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveReports">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveReports" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecievePrimaryDoctrine">
+      <soap12:operation soapAction="http://tempurl.com/RecievePrimaryDoctrine"
+            style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveBattleList">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveBattleList" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveAvailability">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveAvailability" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveNews">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveNews" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveTicker">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveTicker" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveWarProgress">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveWarProgress" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveBattleAdvantageList">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveBattleAdvantageList"
+            style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveBattleAdvantageQueue">
+      <soap12:operation soapAction="http://tempurl.com/RecieveBattleAdvantageQueue"
+            style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveRewardQueue">
+      <soap12:operation soapAction="http://tempurl.com/RecieveRewardQueue" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RecieveXFireAccount">
+      <soap12:operation soapAction="http://tempurl.com/RecieveXFireAccount" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveChat">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveChat" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveSectorList">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveSectorList" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="SendChat">
+      <soap12:operation soapAction="http://tempurl.com/SendChat" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="SendXFire">
+      <soap12:operation soapAction="http://tempurl.com/SendXFire" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestJoinBattle">
+      <soap12:operation soapAction="http://tempurl.com/RequestJoinBattle" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestLeaveBattle">
+      <soap12:operation soapAction="http://tempurl.com/RequestLeaveBattle" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestCreateBattle">
+      <soap12:operation soapAction="http://tempurl.com/RequestCreateBattle" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ChangeBattlePlayers">
+      <soap12:operation soapAction="http://tempurl.com/ChangeBattlePlayers" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ChangeBattleGameType">
+      <soap12:operation soapAction="http://tempurl.com/ChangeBattleGameType" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ChangeBattlePlayerPhase">
+      <soap12:operation soapAction="http://tempurl.com/ChangeBattlePlayerPhase"
+            style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestDeleteCompany">
+      <soap12:operation soapAction="http://tempurl.com/RequestDeleteCompany" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestBattleFile">
+      <soap12:operation soapAction="http://tempurl.com/RequestBattleFile" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestUCSFile">
+      <soap12:operation soapAction="http://tempurl.com/RequestUCSFile" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveDoctrineHeaders">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveDoctrineHeaders"
+            style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrievePUnits">
+      <soap12:operation soapAction="http://tempurl.com/RetrievePUnits" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrievePUnitList">
+      <soap12:operation soapAction="http://tempurl.com/RetrievePUnitList" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveUnits">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveUnits" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveRewards">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveRewards" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RetrieveProfile">
+      <soap12:operation soapAction="http://tempurl.com/RetrieveProfile" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="VerifyLogin">
+      <soap12:operation soapAction="http://tempurl.com/VerifyLogin" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="VerifyUserVersion">
+      <soap12:operation soapAction="http://tempurl.com/VerifyUserVersion" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="AttemptLogin">
+      <soap12:operation soapAction="http://tempurl.com/AttemptLogin" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="Service1HttpGet" type="s0:Service1HttpGet">
+    <http:binding verb="GET"/>
+    <operation name="TestBattleFile">
+      <http:operation location="/TestBattleFile"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output/>
+    </operation>
+    <operation name="ReadyForBattleFile">
+      <http:operation location="/ReadyForBattleFile"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveReports">
+      <http:operation location="/RetrieveReports"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveBattleList">
+      <http:operation location="/RetrieveBattleList"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveAvailability">
+      <http:operation location="/RetrieveAvailability"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveNews">
+      <http:operation location="/RetrieveNews"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveTicker">
+      <http:operation location="/RetrieveTicker"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveWarProgress">
+      <http:operation location="/RetrieveWarProgress"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveBattleAdvantageList">
+      <http:operation location="/RetrieveBattleAdvantageList"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RecieveXFireAccount">
+      <http:operation location="/RecieveXFireAccount"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output/>
+    </operation>
+    <operation name="RetrieveChat">
+      <http:operation location="/RetrieveChat"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveSectorList">
+      <http:operation location="/RetrieveSectorList"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="SendChat">
+      <http:operation location="/SendChat"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="SendXFire">
+      <http:operation location="/SendXFire"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveRewards">
+      <http:operation location="/RetrieveRewards"/>
+      <input>
+        <http:urlEncoded/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="Service1HttpPost" type="s0:Service1HttpPost">
+    <http:binding verb="POST"/>
+    <operation name="TestBattleFile">
+      <http:operation location="/TestBattleFile"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output/>
+    </operation>
+    <operation name="ReadyForBattleFile">
+      <http:operation location="/ReadyForBattleFile"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveReports">
+      <http:operation location="/RetrieveReports"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveBattleList">
+      <http:operation location="/RetrieveBattleList"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveAvailability">
+      <http:operation location="/RetrieveAvailability"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveNews">
+      <http:operation location="/RetrieveNews"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveTicker">
+      <http:operation location="/RetrieveTicker"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveWarProgress">
+      <http:operation location="/RetrieveWarProgress"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveBattleAdvantageList">
+      <http:operation location="/RetrieveBattleAdvantageList"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RecieveXFireAccount">
+      <http:operation location="/RecieveXFireAccount"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output/>
+    </operation>
+    <operation name="RetrieveChat">
+      <http:operation location="/RetrieveChat"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveSectorList">
+      <http:operation location="/RetrieveSectorList"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="SendChat">
+      <http:operation location="/SendChat"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="SendXFire">
+      <http:operation location="/SendXFire"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+    <operation name="RetrieveRewards">
+      <http:operation location="/RetrieveRewards"/>
+      <input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </input>
+      <output>
+        <mime:mimeXml part="Body"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="Service1">
+    <port name="Service1Soap" binding="s0:Service1Soap">
+      <soap:address location="http://67.223.225.161:8081/service/Service1.asmx"/>
+    </port>
+    <port name="Service1Soap12" binding="s0:Service1Soap12">
+      <soap12:address location="http://67.223.225.161:8081/service/Service1.asmx"/>
+    </port>
+    <port name="Service1HttpGet" binding="s0:Service1HttpGet">
+      <http:address location="http://67.223.225.161:8081/service/Service1.asmx"/>
+    </port>
+    <port name="Service1HttpPost" binding="s0:Service1HttpPost">
+      <http:address location="http://67.223.225.161:8081/service/Service1.asmx"/>
+    </port>
+  </service>
+</definitions>
